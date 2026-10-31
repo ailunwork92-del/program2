@@ -7,7 +7,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: unzip -q FLY-apk-project.zip -d project
+      - run: |
+          Z=$(ls FLY-v*.zip | sort -V | tail -1)
+          echo "Using $Z"
+          unzip -q "$Z" -d project
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
